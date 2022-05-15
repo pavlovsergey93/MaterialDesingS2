@@ -25,6 +25,11 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		this.listData.addAll(listData)
 		notifyDataSetChanged()
 	}
+	fun addPlanet(data: DataItemListEntity){
+		listData.add(data)
+		notifyItemInserted(listData.size-1)
+	}
+	fun generationData() = DataItemListEntity(title = "MarsAdd", type = TYPE_MARS)
 
 	override fun onCreateViewHolder(
 		parent: ViewGroup,
@@ -98,6 +103,14 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 				titleTextView.text = data.title
 				cardView.setOnClickListener {
 					clickItemListener.onItemClick(data = data)
+				}
+				delete.setOnClickListener {
+					listData.removeAt(layoutPosition)
+					notifyItemRemoved(layoutPosition)
+				}
+				add.setOnClickListener {
+					listData.add(layoutPosition, generationData())
+					notifyItemInserted(layoutPosition)
 				}
 			}
 		}
