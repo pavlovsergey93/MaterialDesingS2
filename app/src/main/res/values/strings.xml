@@ -1,0 +1,7 @@
+<resources>
+	<string name="app_name">MaterialDesingS2</string>
+	<string name="earth">Earth</string>
+	<string name="info_description">Доп.информация</string>
+	<string name="header">Header</string>
+	<string name="mars">Mars</string>
+</resources>

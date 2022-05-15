@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/_52dp"
+		android:id="@+id/card_view">
+
+	<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/header_title_text_view"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:autoSizeMaxTextSize="@dimen/_45sp"
+			android:autoSizeTextType="uniform"
+			android:gravity="center"
+			tools:text="@string/header" />
+
+	<View
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/_1px"
+			android:layout_gravity="bottom"
+			android:background="@color/black" />
+</androidx.cardview.widget.CardView>

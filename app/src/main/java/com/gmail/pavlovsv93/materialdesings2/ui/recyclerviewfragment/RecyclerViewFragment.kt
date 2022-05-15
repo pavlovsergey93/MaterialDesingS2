@@ -55,5 +55,4 @@ class RecyclerViewFragment : Fragment() {
 		val data = repos.getDataRepos().shuffled()
 		adapter.setData(data)
 	}
-
 }
