@@ -15,7 +15,7 @@ import com.gmail.pavlovsv93.materialdesings2.domain.entity.TYPE_HEADER
 import com.gmail.pavlovsv93.materialdesings2.domain.entity.TYPE_MARS
 
 class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickItemListener) :
-	RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+	RecyclerView.Adapter<RecyclerViewAdapter.BaseViewHolder>() {
 
 	private val listData: MutableList<DataItemListEntity> = mutableListOf()
 
@@ -26,7 +26,10 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		notifyDataSetChanged()
 	}
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+	override fun onCreateViewHolder(
+		parent: ViewGroup,
+		viewType: Int
+	): BaseViewHolder {
 		return when (viewType) {
 			TYPE_EARTH -> {
 				val binding = FragmentRecyclerViewEarthItemBinding.inflate(
@@ -63,13 +66,8 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		}
 	}
 
-	override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-		when (holder) {
-			is EarthViewHolder -> { holder.bind(listData[position]) }
-			is MarsViewHolder -> { holder.bind(listData[position]) }
-			is HeaderViewHolder -> { holder.bind(listData[position]) }
-			is EmptyViewHolder -> { }
-		}
+	override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+		holder.bind(listData[position])
 	}
 
 	override fun getItemCount(): Int = listData.size
@@ -78,8 +76,12 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		return listData[position].type
 	}
 
-	inner class EarthViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-		fun bind(data: DataItemListEntity) {
+	abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+		abstract fun bind(data: DataItemListEntity)
+	}
+
+	inner class EarthViewHolder(itemView: View) : BaseViewHolder(itemView) {
+		override fun bind(data: DataItemListEntity) {
 			FragmentRecyclerViewEarthItemBinding.bind(itemView).apply {
 				titleTextView.text = data.title
 				descriptionTextView.text = data.description
@@ -90,8 +92,8 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		}
 	}
 
-	inner class MarsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-		fun bind(data: DataItemListEntity) {
+	inner class MarsViewHolder(itemView: View) : BaseViewHolder(itemView) {
+		override fun bind(data: DataItemListEntity) {
 			FragmentRecyclerViewMarsItemBinding.bind(itemView).apply {
 				titleTextView.text = data.title
 				cardView.setOnClickListener {
@@ -101,8 +103,8 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		}
 	}
 
-	inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-		fun bind(data: DataItemListEntity) {
+	inner class HeaderViewHolder(itemView: View) : BaseViewHolder(itemView) {
+		override fun bind(data: DataItemListEntity) {
 			FragmentRecyclerViewHeaderItemBinding.bind(itemView).apply {
 				headerTitleTextView.text = data.title
 				cardView.setOnClickListener {
@@ -112,6 +114,8 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		}
 	}
 
-	inner class EmptyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+	inner class EmptyViewHolder(itemView: View) : BaseViewHolder(itemView) {
+		override fun bind(data: DataItemListEntity) {
+		}
 	}
 }

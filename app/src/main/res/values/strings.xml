@@ -4,4 +4,6 @@
 	<string name="info_description">Доп.информация</string>
 	<string name="header">Header</string>
 	<string name="mars">Mars</string>
+	<string name="menu_recycler_view">RV</string>
+	<string name="menu_fond_family">FondFamily</string>
 </resources>
