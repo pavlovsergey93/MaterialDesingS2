@@ -16,21 +16,29 @@ import com.gmail.pavlovsv93.materialdesings2.domain.entity.DataItemListEntity
 import com.gmail.pavlovsv93.materialdesings2.utils.touch.helper.OnTouchHelperCallback
 
 class RecyclerViewFragment : Fragment() {
-	interface OnClickItemListener {
+	interface OnItemActionListener {
 		fun onItemClick(data: DataItemListEntity)
+		fun onItemDrag(viewHolder: RecyclerViewAdapter.BaseViewHolder)
 	}
 
 	private var _binding: FragmentRecyclerViewBinding? = null
 	private val binding get() = _binding!!
 	private val repos: ReposInterface by lazy { MockRepos() }
+	private val itemTouchHelper: ItemTouchHelper by lazy {
+		ItemTouchHelper(OnTouchHelperCallback(adapter))
+	}
 
 	companion object {
 		fun newInstance() = RecyclerViewFragment()
 	}
 
-	private val adapter: RecyclerViewAdapter = RecyclerViewAdapter(object : OnClickItemListener {
+	private val adapter: RecyclerViewAdapter = RecyclerViewAdapter(object : OnItemActionListener {
 		override fun onItemClick(data: DataItemListEntity) {
 			Toast.makeText(requireContext(), data.title, Toast.LENGTH_SHORT).show()
+		}
+
+		override fun onItemDrag(viewHolder: RecyclerViewAdapter.BaseViewHolder) {
+			itemTouchHelper.startDrag(viewHolder)
 		}
 	})
 
@@ -54,7 +62,7 @@ class RecyclerViewFragment : Fragment() {
 		recyclerView.layoutManager =
 			LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 		recyclerView.adapter = adapter
-		ItemTouchHelper(OnTouchHelperCallback(adapter)).attachToRecyclerView(recyclerView)
+		itemTouchHelper.attachToRecyclerView(recyclerView)
 		val data = repos.getDataRepos().shuffled()
 		adapter.setData(data)
 	}

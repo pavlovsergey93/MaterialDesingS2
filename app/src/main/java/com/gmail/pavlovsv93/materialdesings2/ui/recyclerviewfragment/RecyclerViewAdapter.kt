@@ -1,10 +1,11 @@
 package com.gmail.pavlovsv93.materialdesings2.ui.recyclerviewfragment
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MotionEventCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentRecyclerViewEarthItemBinding
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentRecyclerViewEmptyItemBinding
@@ -17,7 +18,7 @@ import com.gmail.pavlovsv93.materialdesings2.domain.entity.TYPE_MARS
 import com.gmail.pavlovsv93.materialdesings2.utils.touch.helper.OnTouchHelperAdapter
 import com.gmail.pavlovsv93.materialdesings2.utils.touch.helper.OnTouchHelperViewHolder
 
-class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickItemListener) :
+class RecyclerViewAdapter(val actionItemListener: RecyclerViewFragment.OnItemActionListener) :
 	RecyclerView.Adapter<RecyclerViewAdapter.BaseViewHolder>(), OnTouchHelperAdapter {
 
 	private val listData: MutableList<Pair<DataItemListEntity, Boolean>> = mutableListOf()
@@ -28,8 +29,9 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		this.listData.addAll(listData)
 		notifyDataSetChanged()
 	}
+
 	fun addElement(adapterPosition: Int) {
-		listData.add(listData.size,generationData())
+		listData.add(listData.size, generationData())
 		notifyItemInserted(listData.size)
 		notifyItemChanged(adapterPosition)
 	}
@@ -90,13 +92,21 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		abstract fun bind(data: Pair<DataItemListEntity, Boolean>)
 	}
 
-	inner class EarthViewHolder(itemView: View) : BaseViewHolder(itemView), OnTouchHelperViewHolder {
+	inner class EarthViewHolder(itemView: View)
+		: BaseViewHolder(itemView),	OnTouchHelperViewHolder {
+		@SuppressLint("ClickableViewAccessibility")
 		override fun bind(data: Pair<DataItemListEntity, Boolean>) {
 			FragmentRecyclerViewEarthItemBinding.bind(itemView).apply {
 				titleTextView.text = data.first.title
 				descriptionTextView.text = data.first.description
 				cardView.setOnClickListener {
-					clickItemListener.onItemClick(data = data.first)
+					actionItemListener.onItemClick(data = data.first)
+				}
+				lever.setOnTouchListener { view, motionEvent ->
+					if (MotionEventCompat.getActionMasked(motionEvent) == MotionEvent.ACTION_DOWN) {
+						actionItemListener.onItemDrag(this@EarthViewHolder)
+					}
+					false
 				}
 			}
 		}
@@ -111,6 +121,7 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 	}
 
 	inner class MarsViewHolder(itemView: View) : BaseViewHolder(itemView), OnTouchHelperViewHolder {
+		@SuppressLint("ClickableViewAccessibility")
 		override fun bind(data: Pair<DataItemListEntity, Boolean>) {
 			FragmentRecyclerViewMarsItemBinding.bind(itemView).apply {
 				titleTextView.text = data.first.title
@@ -124,7 +135,7 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 						View.GONE
 					}
 					notifyItemChanged(layoutPosition)
-					clickItemListener.onItemClick(data = data.first)
+					actionItemListener.onItemClick(data = data.first)
 				}
 				delete.setOnClickListener {
 					listData.removeAt(layoutPosition)
@@ -150,6 +161,12 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 						notifyItemMoved(layoutPosition, layoutPosition + 1)
 					}
 				}
+				lever.setOnTouchListener { view, motionEvent ->
+					if (MotionEventCompat.getActionMasked(motionEvent) == MotionEvent.ACTION_DOWN) {
+						actionItemListener.onItemDrag(this@MarsViewHolder)
+					}
+					false
+				}
 			}
 		}
 
@@ -167,14 +184,16 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 			FragmentRecyclerViewHeaderItemBinding.bind(itemView).apply {
 				headerTitleTextView.text = data.first.title
 				cardView.setOnClickListener {
-					clickItemListener.onItemClick(data = data.first)
+					actionItemListener.onItemClick(data = data.first)
 				}
 			}
 		}
 	}
 
 	inner class EmptyViewHolder(itemView: View) : BaseViewHolder(itemView) {
-		override fun bind(data: Pair<DataItemListEntity, Boolean>) { return	}
+		override fun bind(data: Pair<DataItemListEntity, Boolean>) {
+			return
+		}
 	}
 
 	override fun onItemMove(fromPosition: Int, toPosition: Int) {

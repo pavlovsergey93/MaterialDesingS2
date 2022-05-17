@@ -37,7 +37,7 @@
 				android:layout_height="@dimen/_55dp"
 				android:src="@drawable/ic_baseline_add_circle_outline_24"
 				app:layout_constraintBottom_toTopOf="@id/delete"
-				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/lever"
 				app:layout_constraintTop_toTopOf="parent" />
 
 		<androidx.appcompat.widget.AppCompatImageView
@@ -46,13 +46,13 @@
 				android:layout_height="@dimen/_55dp"
 				android:src="@drawable/ic_baseline_delete_outline_24"
 				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
-				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/lever"
 				app:layout_constraintTop_toBottomOf="@id/add" />
 
 		<androidx.appcompat.widget.AppCompatImageView
 				android:id="@+id/up"
-				android:layout_width="@dimen/_55dp"
-				android:layout_height="@dimen/_55dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
 				android:src="@drawable/ic_baseline_keyboard_double_arrow_up_24"
 				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
 				app:layout_constraintEnd_toStartOf="@id/down"
@@ -61,8 +61,8 @@
 
 		<androidx.appcompat.widget.AppCompatImageView
 				android:id="@+id/down"
-				android:layout_width="@dimen/_55dp"
-				android:layout_height="@dimen/_55dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
 				android:src="@drawable/ic_baseline_keyboard_double_arrow_down_24"
 				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
 				app:layout_constraintEnd_toStartOf="@id/add"
@@ -75,13 +75,23 @@
 				android:layout_height="wrap_content"
 				android:padding="@dimen/_16dp"
 				android:text="@string/description_mars"
-				android:visibility="gone"
 				android:textColor="@color/description"
+				android:visibility="gone"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@id/item_image_view"
 				tools:visibility="visible" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/lever"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingStart="@dimen/_16dp"
+				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="@id/item_image_view"
+				app:srcCompat="@drawable/ic_baseline_dehaze_24" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -10,4 +10,5 @@
 	<dimen name="_45sp">45sp</dimen>
 	<dimen name="_55dp">55dp</dimen>
 	<dimen name="_16dp">16dp</dimen>
+	<dimen name="_100dp">100dp</dimen>
 </resources>

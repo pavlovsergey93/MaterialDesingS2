@@ -26,8 +26,8 @@
 
 		<androidx.appcompat.widget.AppCompatImageView
 				android:id="@+id/item_image_view"
-				android:layout_width="@dimen/_150dp"
-				android:layout_height="@dimen/_150dp"
+				android:layout_width="@dimen/_100dp"
+				android:layout_height="@dimen/_100dp"
 				android:src="@drawable/bg_earth"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
 				android:gravity="top|center"
 				android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
 				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
-				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/lever"
 				app:layout_constraintStart_toEndOf="@id/item_image_view"
 				app:layout_constraintTop_toBottomOf="@id/wiki_image_view"
 				tools:text="@string/info_description" />
@@ -52,8 +52,19 @@
 				android:layout_height="@dimen/_52dp"
 				android:layout_marginEnd="@dimen/_20dp"
 				android:src="@drawable/ic_wikipedia_letter"
-				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/lever"
 				app:layout_constraintTop_toTopOf="@id/item_image_view" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/lever"
+				android:paddingStart="@dimen/_16dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="@id/item_image_view"
+				app:srcCompat="@drawable/ic_baseline_dehaze_24"/>
+
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
 	<View
