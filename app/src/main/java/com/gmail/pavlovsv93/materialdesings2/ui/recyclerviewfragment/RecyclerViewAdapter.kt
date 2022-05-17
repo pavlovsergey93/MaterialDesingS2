@@ -1,6 +1,7 @@
 package com.gmail.pavlovsv93.materialdesings2.ui.recyclerviewfragment
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +14,11 @@ import com.gmail.pavlovsv93.materialdesings2.domain.entity.DataItemListEntity
 import com.gmail.pavlovsv93.materialdesings2.domain.entity.TYPE_EARTH
 import com.gmail.pavlovsv93.materialdesings2.domain.entity.TYPE_HEADER
 import com.gmail.pavlovsv93.materialdesings2.domain.entity.TYPE_MARS
+import com.gmail.pavlovsv93.materialdesings2.utils.touch.helper.OnTouchHelperAdapter
+import com.gmail.pavlovsv93.materialdesings2.utils.touch.helper.OnTouchHelperViewHolder
 
 class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickItemListener) :
-	RecyclerView.Adapter<RecyclerViewAdapter.BaseViewHolder>() {
+	RecyclerView.Adapter<RecyclerViewAdapter.BaseViewHolder>(), OnTouchHelperAdapter {
 
 	private val listData: MutableList<Pair<DataItemListEntity, Boolean>> = mutableListOf()
 
@@ -24,6 +27,11 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		this.listData.clear()
 		this.listData.addAll(listData)
 		notifyDataSetChanged()
+	}
+	fun addElement(adapterPosition: Int) {
+		listData.add(listData.size,generationData())
+		notifyItemInserted(listData.size)
+		notifyItemChanged(adapterPosition)
 	}
 
 	fun generationData() = Pair(DataItemListEntity(title = "MarsAdd", type = TYPE_MARS), false)
@@ -82,7 +90,7 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 		abstract fun bind(data: Pair<DataItemListEntity, Boolean>)
 	}
 
-	inner class EarthViewHolder(itemView: View) : BaseViewHolder(itemView) {
+	inner class EarthViewHolder(itemView: View) : BaseViewHolder(itemView), OnTouchHelperViewHolder {
 		override fun bind(data: Pair<DataItemListEntity, Boolean>) {
 			FragmentRecyclerViewEarthItemBinding.bind(itemView).apply {
 				titleTextView.text = data.first.title
@@ -92,9 +100,17 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 				}
 			}
 		}
+
+		override fun onItemSelected() {
+			itemView.isSelected = true
+		}
+
+		override fun onItemClear() {
+			itemView.isSelected = false
+		}
 	}
 
-	inner class MarsViewHolder(itemView: View) : BaseViewHolder(itemView) {
+	inner class MarsViewHolder(itemView: View) : BaseViewHolder(itemView), OnTouchHelperViewHolder {
 		override fun bind(data: Pair<DataItemListEntity, Boolean>) {
 			FragmentRecyclerViewMarsItemBinding.bind(itemView).apply {
 				titleTextView.text = data.first.title
@@ -136,6 +152,14 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 				}
 			}
 		}
+
+		override fun onItemSelected() {
+			itemView.alpha = 0.7f
+		}
+
+		override fun onItemClear() {
+			itemView.alpha = 1f
+		}
 	}
 
 	inner class HeaderViewHolder(itemView: View) : BaseViewHolder(itemView) {
@@ -150,7 +174,24 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 	}
 
 	inner class EmptyViewHolder(itemView: View) : BaseViewHolder(itemView) {
-		override fun bind(data: Pair<DataItemListEntity, Boolean>) {
+		override fun bind(data: Pair<DataItemListEntity, Boolean>) { return	}
+	}
+
+	override fun onItemMove(fromPosition: Int, toPosition: Int) {
+		if (listData[toPosition].first.type != TYPE_HEADER) {
+			listData.removeAt(fromPosition).apply {
+				listData.add(toPosition, this)
+			}
+			notifyItemMoved(fromPosition, toPosition)
+		}
+	}
+
+	override fun onItemDismiss(position: Int) {
+		if (listData[position].first.type != TYPE_HEADER) {
+			listData.removeAt(position)
+			notifyItemRemoved(position)
+		} else {
+			notifyItemChanged(position)
 		}
 	}
 }

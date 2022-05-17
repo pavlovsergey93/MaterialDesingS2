@@ -3,7 +3,8 @@
 		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/_52dp"
-		android:id="@+id/card_view">
+		android:id="@+id/card_view"
+		android:backgroundTint="@color/teal_200">
 
 	<androidx.appcompat.widget.AppCompatTextView
 			android:id="@+id/header_title_text_view"
@@ -12,7 +13,8 @@
 			android:autoSizeMaxTextSize="@dimen/_45sp"
 			android:autoSizeTextType="uniform"
 			android:gravity="center"
-			tools:text="@string/header" />
+			tools:text="@string/header"
+			android:textColor="@color/black"/>
 
 	<View
 			android:layout_width="match_parent"
