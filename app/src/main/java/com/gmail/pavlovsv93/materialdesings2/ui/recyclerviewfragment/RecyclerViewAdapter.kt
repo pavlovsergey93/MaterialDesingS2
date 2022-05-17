@@ -6,15 +6,14 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.MotionEventCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentRecyclerViewEarthItemBinding
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentRecyclerViewEmptyItemBinding
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentRecyclerViewHeaderItemBinding
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentRecyclerViewMarsItemBinding
 import com.gmail.pavlovsv93.materialdesings2.domain.entity.DataItemListEntity
-import com.gmail.pavlovsv93.materialdesings2.utils.TYPE_EARTH
-import com.gmail.pavlovsv93.materialdesings2.utils.TYPE_HEADER
-import com.gmail.pavlovsv93.materialdesings2.utils.TYPE_MARS
+import com.gmail.pavlovsv93.materialdesings2.utils.*
 import com.gmail.pavlovsv93.materialdesings2.utils.touch.helper.OnTouchHelperAdapter
 import com.gmail.pavlovsv93.materialdesings2.utils.touch.helper.OnTouchHelperViewHolder
 
@@ -25,9 +24,12 @@ class RecyclerViewAdapter(val actionItemListener: RecyclerViewFragment.OnItemAct
 
 	@SuppressLint("NotifyDataSetChanged")
 	fun setData(listData: List<Pair<DataItemListEntity, Boolean>>) {
+		listData.isNotEmpty().let {
+			DiffUtil.calculateDiff(DiffUtilsCallback(this.listData, listData))
+				.dispatchUpdatesTo(this)
+		}
 		this.listData.clear()
 		this.listData.addAll(listData)
-		notifyDataSetChanged()
 	}
 
 	fun addElement(adapterPosition: Int) {
@@ -36,7 +38,8 @@ class RecyclerViewAdapter(val actionItemListener: RecyclerViewFragment.OnItemAct
 		notifyItemChanged(adapterPosition)
 	}
 
-	fun generationData() = Pair(DataItemListEntity(title = "MarsAdd", type = TYPE_MARS), false)
+	fun generationData() =
+		Pair(DataItemListEntity(id = listData.size + 1, title = "MarsAdd", type = TYPE_MARS), false)
 
 	override fun onCreateViewHolder(
 		parent: ViewGroup,
@@ -82,6 +85,47 @@ class RecyclerViewAdapter(val actionItemListener: RecyclerViewFragment.OnItemAct
 		holder.bind(listData[position])
 	}
 
+	override fun onBindViewHolder(
+		holder: BaseViewHolder,
+		position: Int,
+		payloads: MutableList<Any>
+	) {
+		if (!payloads.isEmpty()) {
+			val newData =
+				createPayloads(payloads as List<Change<Pair<DataItemListEntity, Boolean>>>).newData
+			val oldData =
+				createPayloads(payloads as List<Change<Pair<DataItemListEntity, Boolean>>>).oldData
+			when (holder) {
+				is EarthViewHolder -> {
+					with(FragmentRecyclerViewEarthItemBinding.bind(holder.itemView)) {
+						if (newData.first.title != oldData.first.title) {
+							titleTextView.text = newData.first.title
+						}
+						if (newData.first.description != oldData.first.description) {
+							descriptionTextView.text = newData.first.description
+						}
+					}
+				}
+				is MarsViewHolder -> {
+					with(FragmentRecyclerViewMarsItemBinding.bind(holder.itemView)) {
+						if (newData.first.title != oldData.first.title) {
+							titleTextView.text = newData.first.title
+						}
+						if (newData.first.description != oldData.first.description) {
+							descriptionTextView.text = newData.first.description
+						}
+					}
+				}
+				is HeaderViewHolder -> {
+					FragmentRecyclerViewHeaderItemBinding.bind(holder.itemView)
+						.headerTitleTextView.text = newData.first.title
+				}
+			}
+		} else {
+			super.onBindViewHolder(holder, position, payloads)
+		}
+	}
+
 	override fun getItemCount(): Int = listData.size
 
 	override fun getItemViewType(position: Int): Int {
@@ -92,8 +136,8 @@ class RecyclerViewAdapter(val actionItemListener: RecyclerViewFragment.OnItemAct
 		abstract fun bind(data: Pair<DataItemListEntity, Boolean>)
 	}
 
-	inner class EarthViewHolder(itemView: View)
-		: BaseViewHolder(itemView),	OnTouchHelperViewHolder {
+	inner class EarthViewHolder(itemView: View) : BaseViewHolder(itemView),
+		OnTouchHelperViewHolder {
 		@SuppressLint("ClickableViewAccessibility")
 		override fun bind(data: Pair<DataItemListEntity, Boolean>) {
 			FragmentRecyclerViewEarthItemBinding.bind(itemView).apply {

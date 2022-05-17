@@ -27,6 +27,7 @@ class RecyclerViewFragment : Fragment() {
 	private val itemTouchHelper: ItemTouchHelper by lazy {
 		ItemTouchHelper(OnTouchHelperCallback(adapter))
 	}
+	private var flagRefreshList: Boolean = false
 
 	companion object {
 		fun newInstance() = RecyclerViewFragment()
@@ -65,5 +66,14 @@ class RecyclerViewFragment : Fragment() {
 		itemTouchHelper.attachToRecyclerView(recyclerView)
 		val data = repos.getDataRepos().shuffled()
 		adapter.setData(data)
+		binding.fragmentRecyclerViewFab.setOnClickListener {
+			if (flagRefreshList){
+				flagRefreshList = !flagRefreshList
+				adapter.setData(repos.getOtherDataRepos())
+			} else {
+				flagRefreshList = !flagRefreshList
+				adapter.setData(repos.getDataRepos())
+			}
+		}
 	}
 }
