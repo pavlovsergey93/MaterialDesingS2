@@ -12,9 +12,9 @@ import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentRecyclerViewEmp
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentRecyclerViewHeaderItemBinding
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentRecyclerViewMarsItemBinding
 import com.gmail.pavlovsv93.materialdesings2.domain.entity.DataItemListEntity
-import com.gmail.pavlovsv93.materialdesings2.domain.entity.TYPE_EARTH
-import com.gmail.pavlovsv93.materialdesings2.domain.entity.TYPE_HEADER
-import com.gmail.pavlovsv93.materialdesings2.domain.entity.TYPE_MARS
+import com.gmail.pavlovsv93.materialdesings2.utils.TYPE_EARTH
+import com.gmail.pavlovsv93.materialdesings2.utils.TYPE_HEADER
+import com.gmail.pavlovsv93.materialdesings2.utils.TYPE_MARS
 import com.gmail.pavlovsv93.materialdesings2.utils.touch.helper.OnTouchHelperAdapter
 import com.gmail.pavlovsv93.materialdesings2.utils.touch.helper.OnTouchHelperViewHolder
 
