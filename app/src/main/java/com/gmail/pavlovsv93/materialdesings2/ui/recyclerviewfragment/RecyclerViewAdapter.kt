@@ -112,6 +112,22 @@ class RecyclerViewAdapter(val clickItemListener: RecyclerViewFragment.OnClickIte
 					listData.add(layoutPosition, generationData())
 					notifyItemInserted(layoutPosition)
 				}
+				up.setOnClickListener {
+					if(layoutPosition > 0 && listData[layoutPosition-1].type != TYPE_HEADER) {
+						listData.removeAt(layoutPosition).apply {
+							listData.add(layoutPosition - 1, this)
+						}
+						notifyItemMoved(layoutPosition, layoutPosition - 1)
+					}
+				}
+				down.setOnClickListener {
+					if(listData.size-1 > layoutPosition && listData[layoutPosition+1].type != TYPE_HEADER) {
+						listData.removeAt(layoutPosition).apply {
+							listData.add(layoutPosition + 1, this)
+						}
+						notifyItemMoved(layoutPosition, layoutPosition + 1)
+					}
+				}
 			}
 		}
 	}
