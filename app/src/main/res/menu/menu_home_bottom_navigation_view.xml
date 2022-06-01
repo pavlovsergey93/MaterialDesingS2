@@ -8,5 +8,5 @@
 	android:title="@string/menu_fond_family"/>
 <item android:id="@+id/menu_material_desing"
 	android:icon="@drawable/ic_baseline_design_services_24"
-	android:title="@string/menu_fond_family"/>
+	android:title="@string/menu_material_desing"/>
 </menu>

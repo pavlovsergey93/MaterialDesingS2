@@ -8,8 +8,14 @@ import androidx.fragment.app.Fragment
 import com.gmail.pavlovsv93.materialdesings2.R
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentMaterialDesingBinding
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentSplashBinding
+import com.gmail.pavlovsv93.materialdesings2.ui.materialdesingfragment.fragment.ButtonFragment
+import com.gmail.pavlovsv93.materialdesings2.ui.materialdesingfragment.fragment.TextFragment
+import com.gmail.pavlovsv93.materialdesings2.ui.materialdesingfragment.viewpager.ViewPagerAdapter
 import com.gmail.pavlovsv93.materialdesings2.ui.splashfragment.SplashFragment
 import com.google.android.material.tabs.TabLayout
+
+const val TEXT_KEY = 0
+const val BTN_KEY = 1
 
 class MaterialDesingFragment : Fragment() {
 	private var _binding: FragmentMaterialDesingBinding? = null
@@ -35,25 +41,8 @@ class MaterialDesingFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-			override fun onTabSelected(tab: TabLayout.Tab?) {
-
-			}
-
-			override fun onTabUnselected(tab: TabLayout.Tab?) {
-				TODO("Not yet implemented")
-			}
-
-			override fun onTabReselected(tab: TabLayout.Tab?) {
-				TODO("Not yet implemented")
-			}
-
-		})
-	}
-
-	private fun showFragment(fragment: Fragment) {
-		parentFragmentManager.beginTransaction()
-			.replace(R.id.tabs_fragment_container, fragment)
-			.commit()
+		val listFragment = listOf(ButtonFragment(), TextFragment())
+		binding.viewPager.adapter = ViewPagerAdapter(requireActivity().supportFragmentManager, listFragment)
+		binding.tabLayout.setupWithViewPager(binding.viewPager)
 	}
 }

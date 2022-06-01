@@ -64,12 +64,14 @@
 					android:textSize="@dimen/_20sp"
 					android:textStyle="normal" />
 		</LinearLayout>
+
 		<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center"
 				android:text="Правильный подход"
 				android:textSize="@dimen/_35sp" />
+
 		<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -79,21 +81,19 @@
 			<TextView
 					style="@style/MdText"
 					android:textColor="@color/black_87"
-					android:textSize="@dimen/_25sp"
-					android:textStyle="bold" />
+					android:textSize="@dimen/_25sp" />
 
 			<TextView
 					style="@style/MdText"
 					android:textColor="@color/black_54"
-					android:textSize="@dimen/_25sp"
-					android:textStyle="italic" />
+					android:textSize="@dimen/_25sp" />
 
 			<TextView
 					style="@style/MdText"
 					android:textColor="@color/black_54"
-					android:textSize="@dimen/_25sp"
-					android:textStyle="normal" />
+					android:textSize="@dimen/_25sp" />
 		</LinearLayout>
+
 		<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -103,21 +103,19 @@
 			<TextView
 					style="@style/MdText"
 					android:textColor="@color/black_87"
-					android:textSize="@dimen/_25sp"
-					android:textStyle="bold" />
+					android:textSize="@dimen/_25sp" />
 
 			<TextView
 					style="@style/MdText"
 					android:textColor="@color/black_54"
-					android:textSize="@dimen/_25sp"
-					android:textStyle="italic" />
+					android:textSize="@dimen/_25sp" />
 
 			<TextView
 					style="@style/MdText"
 					android:textColor="@color/black_54"
-					android:textSize="@dimen/_25sp"
-					android:textStyle="normal" />
+					android:textSize="@dimen/_25sp" />
 		</LinearLayout>
+
 		<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -127,20 +125,17 @@
 			<TextView
 					style="@style/MdText"
 					android:textColor="@color/black_87"
-					android:textSize="@dimen/_25sp"
-					android:textStyle="bold" />
+					android:textSize="@dimen/_25sp" />
 
 			<TextView
 					style="@style/MdText"
 					android:textColor="@color/black_54"
-					android:textSize="@dimen/_25sp"
-					android:textStyle="italic" />
+					android:textSize="@dimen/_25sp" />
 
 			<TextView
 					style="@style/MdText"
 					android:textColor="@color/black_54"
-					android:textSize="@dimen/_25sp"
-					android:textStyle="normal" />
+					android:textSize="@dimen/_25sp" />
 		</LinearLayout>
 	</LinearLayout>
 </FrameLayout>
