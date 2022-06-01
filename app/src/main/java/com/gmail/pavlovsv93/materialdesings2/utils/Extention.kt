@@ -1,4 +1,9 @@
 package com.gmail.pavlovsv93.materialdesings2.utils
+
+import android.content.Context
+import androidx.fragment.app.Fragment
+import com.gmail.pavlovsv93.materialdesings2.R
+
 // todo константы для type Entity
 const val TYPE_EARTH: Int = 1
 const val TYPE_MARS: Int = 2

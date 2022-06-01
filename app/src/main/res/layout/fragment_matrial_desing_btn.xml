@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:orientation="vertical">
+
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="Неправильный подход"
+				android:padding="@dimen/_4dp"
+				android:textSize="@dimen/_35sp" />
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+			<com.google.android.material.button.MaterialButton
+					style="@style/MbtnStyle"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:padding="@dimen/_16dp"
+					android:textSize="@dimen/_25sp"
+					app:backgroundTint="#E91E63" />
+
+			<com.google.android.material.button.MaterialButton
+					style="@style/MbtnStyle"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:padding="@dimen/_8dp"
+					android:textSize="@dimen/_20sp"
+					app:backgroundTint="#DC1616" />
+
+			<com.google.android.material.button.MaterialButton
+					style="@style/MbtnStyle"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:textSize="@dimen/_15sp"
+					app:backgroundTint="#6A6A6A" />
+		</LinearLayout>
+
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="Правильный подход"
+				android:textSize="@dimen/_35sp" />
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+			<com.google.android.material.button.MaterialButton
+					style="@style/Widget.MaterialComponents.Button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:text="Какой-то текст"
+					android:textSize="@dimen/_20sp" />
+
+			<com.google.android.material.button.MaterialButton
+					style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:text="Какой-то текст"
+					android:textSize="@dimen/_20sp" />
+
+			<com.google.android.material.button.MaterialButton
+					style="@style/Widget.MaterialComponents.Button.TextButton"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:text="Какой-то текст"
+					android:textSize="@dimen/_20sp" />
+		</LinearLayout>
+
+
+
+	</LinearLayout>
+</FrameLayout>
