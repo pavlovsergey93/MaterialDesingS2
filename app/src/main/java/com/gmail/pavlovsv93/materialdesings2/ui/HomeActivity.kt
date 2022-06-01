@@ -1,14 +1,9 @@
 package com.gmail.pavlovsv93.materialdesings2.ui
 
-import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.core.view.isVisible
-import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import com.gmail.pavlovsv93.materialdesings2.R
 import com.gmail.pavlovsv93.materialdesings2.databinding.ActivityHomeBinding
@@ -16,6 +11,9 @@ import com.gmail.pavlovsv93.materialdesings2.ui.fondfamilyfragment.FondFamilyFra
 import com.gmail.pavlovsv93.materialdesings2.ui.materialdesingfragment.MaterialDesingFragment
 import com.gmail.pavlovsv93.materialdesings2.ui.recyclerviewfragment.RecyclerViewFragment
 import com.gmail.pavlovsv93.materialdesings2.ui.splashfragment.SplashFragment
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
+import smartdevelop.ir.eram.showcaseviewlib.config.Gravity
 
 class HomeActivity : AppCompatActivity() {
 	private lateinit var binding: ActivityHomeBinding
@@ -31,6 +29,7 @@ class HomeActivity : AppCompatActivity() {
 			}, 3000L)
 			Handler(mainLooper).postDelayed({
 				binding.homeBottomNavigationView.visibility = View.VISIBLE
+				showTutorial()
 			}, 3100L)
 		}
 		binding.homeBottomNavigationView.setOnItemSelectedListener {
@@ -59,5 +58,15 @@ class HomeActivity : AppCompatActivity() {
 			sfm.addToBackStack(null)
 		}
 		sfm.commit()
+	}
+	private fun showTutorial(){
+		GuideView.Builder(this)
+			.setTitle("Навигация по уроку 8")
+			.setContentText("Добвлен функционал отображения работы с текстами и кнопками")
+			.setGravity(Gravity.center)
+			.setTargetView(binding.homeBottomNavigationView.findViewById(R.id.menu_material_desing))
+			.setDismissType(DismissType.targetView)
+			.build()
+			.show();
 	}
 }

@@ -13,6 +13,9 @@ import com.gmail.pavlovsv93.materialdesings2.ui.materialdesingfragment.fragment.
 import com.gmail.pavlovsv93.materialdesings2.ui.materialdesingfragment.viewpager.ViewPagerAdapter
 import com.gmail.pavlovsv93.materialdesings2.ui.splashfragment.SplashFragment
 import com.google.android.material.tabs.TabLayout
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
+import smartdevelop.ir.eram.showcaseviewlib.config.Gravity
 
 const val TEXT_KEY = 0
 const val BTN_KEY = 1
@@ -41,7 +44,7 @@ class MaterialDesingFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		val listFragment = listOf(ButtonFragment(), TextFragment())
+		val listFragment = listOf(TextFragment(), ButtonFragment())
 		binding.viewPager.adapter = ViewPagerAdapter(requireActivity().supportFragmentManager, listFragment)
 		binding.tabLayout.setupWithViewPager(binding.viewPager)
 	}

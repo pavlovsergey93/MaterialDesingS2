@@ -19,6 +19,7 @@
 				android:textSize="@dimen/_35sp" />
 
 		<LinearLayout
+				android:id="@+id/ll_container_btn_mock"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical">
@@ -58,6 +59,7 @@
 				android:textSize="@dimen/_35sp" />
 
 		<LinearLayout
+				android:id="@+id/ll_container_btn"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical">

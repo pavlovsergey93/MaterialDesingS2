@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentMatrialDesingBtnBinding
 import com.gmail.pavlovsv93.materialdesings2.databinding.FragmentMatrialDesingTextBinding
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
+import smartdevelop.ir.eram.showcaseviewlib.config.Gravity
 
 class ButtonFragment: Fragment() {
 	private var _binding: FragmentMatrialDesingBtnBinding? = null
@@ -20,4 +23,5 @@ class ButtonFragment: Fragment() {
 		_binding = FragmentMatrialDesingBtnBinding.inflate(inflater, container, false)
 		return binding.root
 	}
+
 }
