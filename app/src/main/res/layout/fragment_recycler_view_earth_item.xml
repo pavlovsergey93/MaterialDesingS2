@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/card_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:stateListAnimator="@animator/move_animator">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="@dimen/_4dp">
+
+		<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/title_text_view"
+				android:layout_width="@dimen/_0dp"
+				android:layout_height="@dimen/_0dp"
+				android:gravity="center"
+				android:textSize="@dimen/_35sp"
+				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
+				app:layout_constraintEnd_toStartOf="@id/item_image_view"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="@id/item_image_view"
+				tools:text="@string/earth" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/item_image_view"
+				android:layout_width="@dimen/_100dp"
+				android:layout_height="@dimen/_100dp"
+				android:src="@drawable/bg_earth"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/description_text_view"
+				android:layout_width="@dimen/_0dp"
+				android:layout_height="@dimen/_0dp"
+				android:gravity="top|center"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
+				app:layout_constraintEnd_toStartOf="@id/lever"
+				app:layout_constraintStart_toEndOf="@id/item_image_view"
+				app:layout_constraintTop_toBottomOf="@id/wiki_image_view"
+				tools:text="@string/info_description" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/wiki_image_view"
+				android:layout_width="@dimen/_52dp"
+				android:layout_height="@dimen/_52dp"
+				android:layout_marginEnd="@dimen/_20dp"
+				android:src="@drawable/ic_wikipedia_letter"
+				app:layout_constraintEnd_toStartOf="@id/lever"
+				app:layout_constraintTop_toTopOf="@id/item_image_view" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/lever"
+				android:paddingStart="@dimen/_16dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="@id/item_image_view"
+				app:srcCompat="@drawable/ic_baseline_dehaze_24"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<View
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/_1px"
+			android:layout_gravity="bottom"
+			android:background="@color/black" />
+</androidx.cardview.widget.CardView>

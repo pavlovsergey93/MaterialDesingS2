@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:id="@+id/card_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="@dimen/_4dp">
+
+		<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/title_text_view"
+				android:layout_width="wrap_content"
+				android:layout_height="@dimen/_0dp"
+				android:gravity="center"
+				android:textSize="@dimen/_35sp"
+				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
+				app:layout_constraintStart_toEndOf="@id/item_image_view"
+				app:layout_constraintTop_toTopOf="@id/item_image_view"
+				tools:text="@string/mars" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/item_image_view"
+				android:layout_width="@dimen/_150dp"
+				android:layout_height="@dimen/_150dp"
+				android:src="@drawable/bg_mars"
+				app:layout_constraintBottom_toTopOf="@id/description_text_view"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/add"
+				android:layout_width="@dimen/_55dp"
+				android:layout_height="@dimen/_55dp"
+				android:src="@drawable/ic_baseline_add_circle_outline_24"
+				app:layout_constraintBottom_toTopOf="@id/delete"
+				app:layout_constraintEnd_toStartOf="@id/lever"
+				app:layout_constraintTop_toTopOf="parent" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/delete"
+				android:layout_width="@dimen/_55dp"
+				android:layout_height="@dimen/_55dp"
+				android:src="@drawable/ic_baseline_delete_outline_24"
+				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
+				app:layout_constraintEnd_toStartOf="@id/lever"
+				app:layout_constraintTop_toBottomOf="@id/add" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/up"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_baseline_keyboard_double_arrow_up_24"
+				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
+				app:layout_constraintEnd_toStartOf="@id/down"
+				app:layout_constraintStart_toEndOf="@id/title_text_view"
+				app:layout_constraintTop_toTopOf="parent" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/down"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_baseline_keyboard_double_arrow_down_24"
+				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
+				app:layout_constraintEnd_toStartOf="@id/add"
+				app:layout_constraintStart_toEndOf="@id/up"
+				app:layout_constraintTop_toTopOf="parent" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/description_text_view"
+				android:layout_width="@dimen/_0dp"
+				android:layout_height="wrap_content"
+				android:padding="@dimen/_16dp"
+				android:text="@string/description_mars"
+				android:textColor="@color/description"
+				android:visibility="gone"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/item_image_view"
+				tools:visibility="visible" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/lever"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingStart="@dimen/_16dp"
+				app:layout_constraintBottom_toBottomOf="@id/item_image_view"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="@id/item_image_view"
+				app:srcCompat="@drawable/ic_baseline_dehaze_24" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<View
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/_1px"
+			android:layout_gravity="bottom"
+			android:background="@color/black" />
+</androidx.cardview.widget.CardView>

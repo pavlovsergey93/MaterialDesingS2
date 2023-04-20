@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:orientation="vertical">
+
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="Неправильный подход"
+				android:textSize="@dimen/_35sp" />
+
+		<LinearLayout
+				android:id="@+id/ll_container_text_mock"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+			<TextView
+					style="@style/MdText"
+					android:textColor="@color/black"
+					android:textSize="@dimen/_35sp"
+					android:textStyle="bold" />
+
+			<TextView
+					style="@style/MdText"
+					android:textColor="@color/black"
+					android:textSize="@dimen/_25sp"
+					android:textStyle="italic" />
+
+			<TextView
+					style="@style/MdText"
+					android:textColor="@color/black"
+					android:textSize="@dimen/_20sp"
+					android:textStyle="normal" />
+		</LinearLayout>
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@color/purple_700"
+				android:orientation="vertical">
+
+			<TextView
+					style="@style/MdText"
+					android:textColor="@color/black"
+					android:textSize="@dimen/_35sp"
+					android:textStyle="bold" />
+
+			<TextView
+					style="@style/MdText"
+					android:textColor="@color/black"
+					android:textSize="@dimen/_25sp"
+					android:textStyle="italic" />
+
+			<TextView
+					style="@style/MdText"
+					android:textColor="@color/black"
+					android:textSize="@dimen/_20sp"
+					android:textStyle="normal" />
+		</LinearLayout>
+
+		<LinearLayout
+				android:id="@+id/ll_container_text"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+			<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center"
+					android:text="Правильный подход"
+					android:textSize="@dimen/_35sp" />
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/purple_700"
+					android:orientation="vertical">
+
+				<TextView
+						style="@style/MdText"
+						android:textColor="@color/black_87"
+						android:textSize="@dimen/_25sp" />
+
+				<TextView
+						style="@style/MdText"
+						android:textColor="@color/black_54"
+						android:textSize="@dimen/_25sp" />
+
+				<TextView
+						style="@style/MdText"
+						android:textColor="@color/black_54"
+						android:textSize="@dimen/_25sp" />
+			</LinearLayout>
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="#8F0000"
+					android:orientation="vertical">
+
+				<TextView
+						style="@style/MdText"
+						android:textColor="@color/black_87"
+						android:textSize="@dimen/_25sp" />
+
+				<TextView
+						style="@style/MdText"
+						android:textColor="@color/black_54"
+						android:textSize="@dimen/_25sp" />
+
+				<TextView
+						style="@style/MdText"
+						android:textColor="@color/black_54"
+						android:textSize="@dimen/_25sp" />
+			</LinearLayout>
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+
+					android:orientation="vertical">
+
+				<TextView
+						style="@style/MdText"
+						android:textColor="@color/black_87"
+						android:textSize="@dimen/_25sp" />
+
+				<TextView
+						style="@style/MdText"
+						android:textColor="@color/black_54"
+						android:textSize="@dimen/_25sp" />
+
+				<TextView
+						style="@style/MdText"
+						android:textColor="@color/black_54"
+						android:textSize="@dimen/_25sp" />
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+</FrameLayout>
